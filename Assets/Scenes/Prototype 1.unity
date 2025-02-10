@@ -3401,7 +3401,6 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
-  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3476,25 +3475,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.079714835, y: 0.015257508, z: -0.0012273975, w: 0.99670017}
-  m_LocalPosition: {x: 0.07802271, y: 7.905078, z: -20.487696}
+  m_LocalRotation: {x: 0.017801438, y: -0.00000015500225, z: 0.000008705909, w: 0.9998416}
+  m_LocalPosition: {x: 0.07802271, y: 1.51, z: 4.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2087501715}
-  m_LocalEulerAnglesHint: {x: 5, y: -90, z: 0}
---- !u!114 &534669906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f67d2766c80eb9542b45f4bd9d02639a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_LocalEulerAnglesHint: {x: 2.04, y: 0, z: 0.001001}
 --- !u!4 &536818727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5068781988884614157, guid: a7650c1ce3d21654ebf92d7ebf494bfc, type: 3}
@@ -12091,11 +12078,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2087501716}
-  speed: 200
+  speed: 10
   forwardControl: 0
   verticalControl: 0
   horizontalControl: 0
+  mouseSensitivity: 0.5
   mouseChange: {x: 0, y: 0}
+  mouseDirection: {x: 0, y: 0}
+  shipDirection: {x: 0, y: 0}
 --- !u!4 &2087501715 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 4534dec104be08e418b20ba5844a0390, type: 3}
@@ -12110,7 +12100,7 @@ Rigidbody:
   m_GameObject: {fileID: 2087501713}
   serializedVersion: 4
   m_Mass: 5000
-  m_Drag: 10
+  m_Drag: 1
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
