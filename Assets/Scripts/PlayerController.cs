@@ -26,8 +26,9 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public float speed = 10000f, forwardControl, verticalControl, horizontalControl, mouseSensitivity = 2.0f;
     public Vector2 mouseChange, mouseDirection, shipDirection;
-    public AudioSource engineSoundSource;
-    public AudioClip engineSoundClip;
+    public AudioSource engineSoundSource, laserSoundSource;
+    public AudioClip engineSoundClip, laserSoundClip;
+    public GameObject laser, rightLaserSpawnPoint, leftLaserSpawnPoint;
 
     private void Start()
     {
@@ -54,6 +55,14 @@ public class PlayerController : MonoBehaviour
                                     Mathf.Abs(verticalControl) +
                                     Mathf.Abs(horizontalControl)
                                     ), 0f, 1f);
+
+        //FIRE THE LAZORS
+        if (Input.GetMouseButtonDown(0)) //create the laser if left mouse is pressed
+        {
+            Instantiate(laser, leftLaserSpawnPoint.transform.position, leftLaserSpawnPoint.transform.rotation);
+            Instantiate(laser, rightLaserSpawnPoint.transform.position, rightLaserSpawnPoint.transform.rotation);
+            laserSoundSource.PlayOneShot(laserSoundClip);
+        }
 
         /*if (forwardControl != 0 || verticalControl != 0 || horizontalControl != 0)
         {
