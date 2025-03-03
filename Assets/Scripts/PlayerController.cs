@@ -4,7 +4,7 @@ using UnityEngine;
 
 /* TODO:
  * 1.) Projectiles
- * 2.) Sound
+ * 2.) Sound for explosions, enemy ship with diff lasers?, collisions
  * 3.) Enemies/Stuff to shoot
  * 4.) Moving asteroids in random direction
  * 5.) Spawn asteroids randomly
