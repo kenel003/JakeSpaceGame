@@ -19,3 +19,6 @@ public class Asteroid : MonoBehaviour
         transform.Rotate(randomSpin * Time.deltaTime * speed);
     }
 }
+/*
+ * Random time --> spawn a bunch of asteroids at random distances/locations --> asteroids check distance from player and delete if needed
+ */
