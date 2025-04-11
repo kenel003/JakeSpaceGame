@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d41f00dfc85602d4ab7e1fccaaf09d25
+timeCreated: 1446733156
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 51995
+  packageName: Planet Texture Generator
+  packageVersion: 1.2
+  assetPath: Assets/HeyBlairGames/PlanetTextureGenerator/Example/Example1.asset
+  uploadId: 156270

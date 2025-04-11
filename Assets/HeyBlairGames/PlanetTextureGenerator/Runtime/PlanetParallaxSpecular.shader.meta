@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: e2204c6c62f801848ba806cf82fe630e
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 51995
+  packageName: Planet Texture Generator
+  packageVersion: 1.2
+  assetPath: Assets/HeyBlairGames/PlanetTextureGenerator/Runtime/PlanetParallaxSpecular.shader
+  uploadId: 156270

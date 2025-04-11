@@ -35,18 +35,19 @@ public class GameController : MonoBehaviour
         //Find random point in space ahead of player
         randX = player.transform.position.x + Random.Range(-200f, 200f);
         randY = player.transform.position.y + Random.Range(-200f, 200f);
-        randZ = player.transform.position.z + Random.Range(100f, 200f);
+        randZ = player.transform.position.z + Random.Range(200f, 400f); //distance in front of player
         randomSpawnLocation = new Vector3(randX, randY, randZ);
 
         for (int i = 0; i < randomNumOfAsteroidField; i++)
         {
             randomAsteroid = Random.Range(0, asteroids.Length); //pick a random asteroid to spawn
-            randX = randomSpawnLocation.x + Random.Range(100f, 200f);
-            randY = randomSpawnLocation.y + Random.Range(100f, 200f);
-            randZ = randomSpawnLocation.z + Random.Range(100f, 200f);
+            randX = randomSpawnLocation.x + Random.Range(200f, 400f); //radius of sphere to 
+            randY = randomSpawnLocation.y + Random.Range(200f, 400f); //spawn asteroids
+            randZ = randomSpawnLocation.z + Random.Range(200f, 400f);
             randomLocationOffset = new Vector3(randX, randY, randZ);
             Instantiate(asteroids[randomAsteroid], randomLocationOffset, transform.rotation);
         }
+        
         StartCoroutine(SpawnAsteroidField());
     }
 }

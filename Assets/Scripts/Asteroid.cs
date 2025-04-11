@@ -1,23 +1,27 @@
 using UnityEngine;
+using System.Collections;
 
 public class Asteroid : MonoBehaviour
 {
-    private Vector3 randomSpin;
-    private float speed;
+    public int checkPlayerDistanceTime = 5;
+    public float maxDistanceFromPlayer = 1000f;
+    public Transform playerTransform;
     void Start()
     {
-        randomSpin = new Vector3(
-                                 Random.Range(-359f, 359f), 
-                                 Random.Range(-359f, 359f), 
-                                 Random.Range(-359f, 359f)
-                                 ); //gets a random direction for rotation
-        speed = Random.Range(0f, .25f);
+        playerTransform = GameObject.Find("Player Ship").transform;
+        StartCoroutine(CheckPlayerDistance());
     }
 
-    void Update()
+    IEnumerator CheckPlayerDistance()
     {
-        transform.Rotate(randomSpin * Time.deltaTime * speed);
+        yield return new WaitForSeconds(checkPlayerDistanceTime);
+        if (Vector3.Distance(playerTransform.position, transform.position) > maxDistanceFromPlayer)
+        {
+            Destroy(gameObject);
+        }
+        StartCoroutine(CheckPlayerDistance());
     }
+    
 }
 /*
  * Random time --> spawn a bunch of asteroids at random distances/locations --> asteroids check distance from player and delete if needed

@@ -23,51 +23,79 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody rb;
-    public float speed = 10000f, forwardControl, verticalControl, horizontalControl, mouseSensitivity = 2.0f;
-    public Vector2 mouseChange, mouseDirection, shipDirection;
-    public AudioSource engineSoundSource, laserSoundSource;
+    private Rigidbody rb;
+
+    public float speed = 10000f, 
+        mouseSensitivity = 2.0f, rollControl, rollSensitivity = 100f, boost = 30f, 
+        maxBoostSpeed = 300f, minBoostSpeed = 30f, boostAcceleration = 120f, laserSpeed = 150f;
+    private float forwardControl, verticalControl, horizontalControl;
+
+    private Vector2 mouseChange, mouseDirection, shipDirection;
+    private AudioSource engineSoundSource, laserSoundSource;
     public AudioClip engineSoundClip, laserSoundClip;
     public GameObject laser, rightLaserSpawnPoint, leftLaserSpawnPoint;
+    private Camera playerCam;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        playerCam = GetComponent<Camera>();
+        engineSoundSource = GetComponent<AudioSource>();
+        laserSoundSource = GetComponent<AudioSource>();
+        //engineSoundClip = Resources.Load<AudioClip>("Audio/engine");
+        //laserSoundClip = Resources.Load<AudioClip>("Audio/laser");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     void Update()
     {
+        
         forwardControl = Input.GetAxis("Forward");
         verticalControl = Input.GetAxis("Vertical");
         horizontalControl = Input.GetAxis("Horizontal");
-        rb.AddRelativeForce(Vector3.forward * speed * Time.deltaTime * forwardControl, ForceMode.VelocityChange);
+        rollControl = Input.GetAxis("Roll");
+        
+        rb.AddRelativeForce(Vector3.forward * boost * Time.deltaTime * forwardControl, ForceMode.VelocityChange);
         rb.AddRelativeForce(Vector3.up * speed * Time.deltaTime * verticalControl, ForceMode.VelocityChange);
         rb.AddRelativeForce(Vector3.right * speed * Time.deltaTime * horizontalControl, ForceMode.VelocityChange);
-        //mouseChange = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        //mouseDirection += mouseChange; 
+       
         float mouseUp = mouseSensitivity * Input.GetAxis("Mouse Y");
         float mouseSide = mouseSensitivity * Input.GetAxis("Mouse X");
-        //transform.Rotate(-mouseUp, mouseSide, 0);
+        
         rb.AddRelativeTorque(-mouseUp, mouseSide, 0, ForceMode.VelocityChange);
-
+        rb.AddRelativeTorque(Vector3.forward * rollControl * rollSensitivity * Time.deltaTime, ForceMode.Acceleration);
         engineSoundSource.volume = Mathf.Clamp( (Mathf.Abs(forwardControl) + 
                                     Mathf.Abs(verticalControl) +
                                     Mathf.Abs(horizontalControl)
                                     ), 0f, 1f);
 
+        if(forwardControl > 0 && Input.GetKey(KeyCode.LeftShift))
+        {
+            boost = Mathf.Lerp(minBoostSpeed, maxBoostSpeed, Time.deltaTime * boostAcceleration);
+            
+        }
+        else
+        {
+            boost = Mathf.Lerp(maxBoostSpeed, minBoostSpeed, Time.deltaTime * boostAcceleration);
+            
+        }
+
         //FIRE THE LAZORS
         if (Input.GetMouseButtonDown(0)) //create the laser if left mouse is pressed
         {
-            Instantiate(laser, leftLaserSpawnPoint.transform.position, leftLaserSpawnPoint.transform.rotation);
-            Instantiate(laser, rightLaserSpawnPoint.transform.position, rightLaserSpawnPoint.transform.rotation);
+            GameObject laser1, laser2;
+            
+            laser1 = Instantiate(laser, leftLaserSpawnPoint.transform.position, leftLaserSpawnPoint.transform.rotation);
+            laser1.GetComponent<Rigidbody>().linearVelocity = rb.linearVelocity + leftLaserSpawnPoint.transform.forward * laserSpeed;
+
+            laser2 = Instantiate(laser, rightLaserSpawnPoint.transform.position, rightLaserSpawnPoint.transform.rotation);
+            laser2.GetComponent<Rigidbody>().linearVelocity = rb.linearVelocity + rightLaserSpawnPoint.transform.forward * laserSpeed;
+
             laserSoundSource.PlayOneShot(laserSoundClip);
         }
 
-        /*if (forwardControl != 0 || verticalControl != 0 || horizontalControl != 0)
-        {
-            engineSoundSource.PlayOneShot(engineSoundClip);
-        }*/
+        
 
     }
 
