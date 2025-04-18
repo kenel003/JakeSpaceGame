@@ -2,19 +2,26 @@ using UnityEngine;
 
 public class tester : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Act()
     {
-        int i = 1;
-        i -= ++i;
-        i += --i;
-        Debug.Log(i);
-        
+        Debug.Log("run ");
+        Eat();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Eat()
     {
-        
+        Debug.Log("eat ");
     }
 }
+public class testerChild : tester
+{
+    public void Act()
+    {
+        base.Act();
+        Debug.Log("sleep ");
+    }
+    public void Eat()
+    {
+        base.Eat();
+        Debug.Log("bark "); 
+    }
+   }

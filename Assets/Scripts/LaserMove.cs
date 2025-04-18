@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class LaserMove : MonoBehaviour
 {
-    private float despawnTime = .25f, timer = 0f;
+    [SerializeField]
+    private float despawnTime = .25f; 
+    private float timer = 0f;
     
     
     void Update()

@@ -1344,6 +1344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 134826707}
   - component: {fileID: 134826706}
+  - component: {fileID: 134826708}
   m_Layer: 0
   m_Name: TesterThingy
   m_TagString: Untagged
@@ -1378,6 +1379,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &134826708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134826705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22096d7f1feff3340afba338278647b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &165204084
 Mesh:
   m_ObjectHideFlags: 0
@@ -4099,6 +4112,7 @@ GameObject:
   - component: {fileID: 534669908}
   - component: {fileID: 534669910}
   - component: {fileID: 534669909}
+  - component: {fileID: 534669911}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4263,12 +4277,12 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 399bef2bead15104f8d82e7e2d0a8655, type: 3}
+  m_Resource: {fileID: 8300000, guid: 399bef2bead15104f8d82e7e2d0a8655, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4371,11 +4385,105 @@ MonoBehaviour:
   minBoostSpeed: 30
   boostAcceleration: 300
   laserSpeed: 150
-  engineSoundClip: {fileID: 8300000, guid: 399bef2bead15104f8d82e7e2d0a8655, type: 3}
-  laserSoundClip: {fileID: 8300000, guid: 9e6efe368eb7ca742a9102fbe679392e, type: 3}
-  laser: {fileID: 253080210979750668, guid: 770bf0f9e4bcb2b4a92d4f4399d42157, type: 3}
-  rightLaserSpawnPoint: {fileID: 773654516}
-  leftLaserSpawnPoint: {fileID: 610897069}
+  engineSoundSource: {fileID: 534669909}
+  laserSoundSource: {fileID: 534669911}
+--- !u!82 &534669911
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!43 &551120361
 Mesh:
   m_ObjectHideFlags: 0
@@ -5042,7 +5150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 610897070}
   m_Layer: 0
-  m_Name: LaserSpawnPoint
+  m_Name: LeftLaserSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5932,7 +6040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 773654517}
   m_Layer: 0
-  m_Name: LaserSpawnPoint
+  m_Name: RightLaserSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7706,6 +7814,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 253080210979750668, guid: 770bf0f9e4bcb2b4a92d4f4399d42157, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9004755622875907052, guid: 770bf0f9e4bcb2b4a92d4f4399d42157, type: 3}
       propertyPath: m_LocalPosition.x
       value: 89.572556
@@ -8786,7 +8898,6 @@ MonoBehaviour:
   - {fileID: 3606340279829517473, guid: 46e7653dfbf77b247bc855c46bbd4f4e, type: 3}
   - {fileID: 7642089964585371861, guid: ec4c29675987e87429aeec5e4e93fc5f, type: 3}
   - {fileID: 2194794745080136896, guid: c0e82ab38938b0a4ab35f65d8981ac0f, type: 3}
-  player: {fileID: 2087501713}
   minAsteroids: 100
   maxAsteroids: 500
   minSpawnTime: 3
@@ -10894,11 +11005,6 @@ Transform:
   - {fileID: 94368234}
   m_Father: {fileID: 528289024}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2087501713 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100002, guid: 4534dec104be08e418b20ba5844a0390, type: 3}
-  m_PrefabInstance: {fileID: 369086153}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2087501715 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 4534dec104be08e418b20ba5844a0390, type: 3}
@@ -11652,8 +11758,8 @@ SceneRoots:
   - {fileID: 1878104645}
   - {fileID: 1982811298}
   - {fileID: 1276411581}
-  - {fileID: 134826707}
   - {fileID: 528289024}
   - {fileID: 1108734141}
   - {fileID: 1565393729}
   - {fileID: 1423643994}
+  - {fileID: 134826707}

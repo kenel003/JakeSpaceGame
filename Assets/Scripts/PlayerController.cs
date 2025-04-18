@@ -25,25 +25,28 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
 
-    public float speed = 10000f, 
+    [SerializeField]
+    private float speed = 10000f, 
         mouseSensitivity = 2.0f, rollControl, rollSensitivity = 100f, boost = 30f, 
         maxBoostSpeed = 300f, minBoostSpeed = 30f, boostAcceleration = 120f, laserSpeed = 150f;
     private float forwardControl, verticalControl, horizontalControl;
 
     private Vector2 mouseChange, mouseDirection, shipDirection;
+
+    [SerializeField]
     private AudioSource engineSoundSource, laserSoundSource;
-    public AudioClip engineSoundClip, laserSoundClip;
-    public GameObject laser, rightLaserSpawnPoint, leftLaserSpawnPoint;
+    private AudioClip laserSoundClip;
+    private GameObject rightLaserSpawnPoint, leftLaserSpawnPoint, laser;
     private Camera playerCam;
 
     private void Start()
     {
+        rightLaserSpawnPoint = GameObject.Find("RightLaserSpawnPoint");
+        leftLaserSpawnPoint = GameObject.Find("LeftLaserSpawnPoint");
         rb = GetComponent<Rigidbody>();
         playerCam = GetComponent<Camera>();
-        engineSoundSource = GetComponent<AudioSource>();
-        laserSoundSource = GetComponent<AudioSource>();
-        //engineSoundClip = Resources.Load<AudioClip>("Audio/engine");
-        //laserSoundClip = Resources.Load<AudioClip>("Audio/laser");
+        laser = Resources.Load<GameObject>("Laser");
+        laserSoundClip = Resources.Load<AudioClip>("Audio/laser"); // will find 'Resources/Audio/laser'
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

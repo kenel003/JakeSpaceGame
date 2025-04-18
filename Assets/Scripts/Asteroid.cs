@@ -3,9 +3,12 @@ using System.Collections;
 
 public class Asteroid : MonoBehaviour
 {
-    public int checkPlayerDistanceTime = 5;
-    public float maxDistanceFromPlayer = 1000f;
-    public Transform playerTransform;
+    [SerializeField]
+    private int checkPlayerDistanceTime = 5;
+    [SerializeField]
+    private float maxDistanceFromPlayer = 1000f;
+
+    private Transform playerTransform;
     void Start()
     {
         playerTransform = GameObject.Find("Player Ship").transform;
