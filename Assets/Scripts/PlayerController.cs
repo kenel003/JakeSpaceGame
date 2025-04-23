@@ -36,13 +36,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private AudioSource engineSoundSource, laserSoundSource;
     private AudioClip laserSoundClip;
-    private GameObject rightLaserSpawnPoint, leftLaserSpawnPoint, laser;
+    [SerializeField]
+    private GameObject rightLaserSpawnPoint, leftLaserSpawnPoint;
+    private GameObject laser;
     private Camera playerCam;
 
     private void Start()
     {
-        rightLaserSpawnPoint = GameObject.Find("RightLaserSpawnPoint");
-        leftLaserSpawnPoint = GameObject.Find("LeftLaserSpawnPoint");
         rb = GetComponent<Rigidbody>();
         playerCam = GetComponent<Camera>();
         laser = Resources.Load<GameObject>("Laser");
