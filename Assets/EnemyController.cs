@@ -7,10 +7,10 @@ using System.Collections;
  */
 public class EnemyController : MonoBehaviour
 {
-    private bool inRange, canSeePlayer, canShoot = true, isAggro = true;
+    private bool inRangeShoot, inRangeMove, canSeePlayer, canShoot = true, isAggro = true;
     [SerializeField]
-    private float maxRange, currentRangeToPlayer, fireRate = 1f, speed = 100f, rotationRate = 10f, laserSpeed = 150f;
-    private Vector3 dirToPlayer;
+    private float maxRangeShoot, minRangeMove = 25f, currentRangeToPlayer, fireRate, speed = 100f, rotationRate = 10f, laserSpeed = 150f;
+    private Vector3 dirToPlayer, randomFlightDir;
     private GameObject player, enemyLaser;
     private Rigidbody rb;
     [SerializeField]
@@ -18,8 +18,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private AudioSource engineSoundSource, laserSoundSource;
     private AudioClip laserSoundClip;
+    [SerializeField]
+    private ParticleSystem splodeyBits;
     void Start()
     {
+        randomFlightDir = new Vector3(Random.Range(-1, 2), Random.Range(-1, 2), 0f);
+        fireRate = Random.Range(0.15f, 1f);
         enemyLaser = Resources.Load<GameObject>("EnemyLaser");
         laserSoundClip = Resources.Load<AudioClip>("Audio/laser");
         player = GameObject.Find("Player Ship");
@@ -30,16 +34,25 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Vector3.Distance(transform.position, player.transform.position) > minRangeMove )
+        {
+            rb.AddRelativeForce(Vector3.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
+            randomFlightDir = new Vector3(Random.Range(-1, 2), Random.Range(-1, 2), 0f); //generates a random strafe direction for the enemy if it is within minimum range
+        }
+        else
+        {
+            rb.AddForce(randomFlightDir * 0.3f * speed * Time.deltaTime, ForceMode.VelocityChange);
+        }
+        
         dirToPlayer = player.transform.position - transform.position;
-        Debug.DrawRay(transform.position, dirToPlayer, Color.red);   //Draws line to player
-        rb.AddRelativeForce(Vector3.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
+        //Debug.DrawRay(transform.position, dirToPlayer, Color.red);   //Draws line to player
         Vector3 newDirection = Vector3.RotateTowards(transform.forward, dirToPlayer, rotationRate * Time.deltaTime, 0.0f);
         transform.rotation = Quaternion.LookRotation(newDirection);
     }
 
     IEnumerator ImmaFirinMahLazor()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(fireRate);
 
         GameObject laser1, laser2;
 
@@ -52,5 +65,14 @@ public class EnemyController : MonoBehaviour
         laserSoundSource.PlayOneShot(laserSoundClip);
 
         StartCoroutine(ImmaFirinMahLazor());
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("PlayerLaser"))
+        {
+            splodeyBits.Play();
+            Debug.Log("HIT!");
+        }
     }
 }

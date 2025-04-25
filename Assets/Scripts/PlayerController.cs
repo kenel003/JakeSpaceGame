@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     private GameObject rightLaserSpawnPoint, leftLaserSpawnPoint;
     private GameObject laser;
     private Camera playerCam;
+    [SerializeField]
+    private ParticleSystem splodeyBits;
 
     private void Start()
     {
@@ -102,4 +104,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("EnemyLaser"))
+        {
+            splodeyBits.Play();
+        }
+    }
 }
