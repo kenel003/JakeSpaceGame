@@ -769,7 +769,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.95
+      scalar: 10.02
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5558,13 +5558,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1822e3ea05c11cf449c64dc320f98e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aggroRange: 150
   maxRangeShoot: 50
   minRangeMove: 25
   currentRangeToPlayer: 0
   fireRate: 1
-  speed: 25
+  casualSpeed: 10
+  attackSpeed: 25
   rotationRate: 5
   laserSpeed: 200
+  minTimeToChangeDirection: 15
+  maxTimeToChangeDirection: 45
   rightLaserSpawnPoint: {fileID: 40204742124711208}
   leftLaserSpawnPoint: {fileID: 1576503703620289361}
   engineSoundSource: {fileID: 8286419757587078992}
